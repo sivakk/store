@@ -25,6 +25,7 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
 
 
 
@@ -54,17 +55,17 @@ import { AuthService } from './auth.service';
       {path:'',component:HomeComponent},
       {path:'products',component:ProductsComponent},
       {path:'shoppingcart',component:ShopingcartComponent},
-      {path:'checkout',component:CheckoutComponent},
-      {path:'ordersucess',component:OrdersucessComponent},
-      {path:'myorder',component:MyorderComponent},
+      {path:'checkout',component:CheckoutComponent,canActivate[AuthGuardService]},
+      {path:'ordersucess',component:OrdersucessComponent,canActivate[AuthGuardService]},
+      {path:'myorder',component:MyorderComponent,canActivate[AuthGuardService]},
       {path:'login',component:LoginComponent},
-      {path:'admin/products',component:AdminProductsComponent},
-      {path:'admin/orders',component:AdminOrdersComponent},
+      {path:'admin/products',component:AdminProductsComponent,canActivate[AuthGuardService]},
+      {path:'admin/orders',component:AdminOrdersComponent,canActivate[AuthGuardService]},
      
 
     ])
   ],
-  providers: [AuthService],
+  providers: [AuthService,AuthGuardService],
 
 
   bootstrap: [AppComponent]
